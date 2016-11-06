@@ -1,0 +1,73 @@
+{
+  "name": "action-helper",
+  "description": "The simplest action creator for redux",
+  "main": "index.js",
+  "scripts": {
+    "lint": "xo",
+    "test": "ava",
+    "coverage": "nyc npm run test && nyc check-coverage --lines 100 --functions 100 --branches 100",
+    "commit": "npm run coverage && git cz",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ayatkevich/action-helper.git"
+  },
+  "keywords": [
+    "redux",
+    "action",
+    "react"
+  ],
+  "author": "Alexander Yatkevich (ayatkevich@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ayatkevich/action-helper/issues"
+  },
+  "homepage": "https://github.com/ayatkevich/action-helper",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "node_modules",
+      "src/**/*.spec.js"
+    ]
+  },
+  "ava": {
+    "files": [
+      "src/**/*.spec.js"
+    ],
+    "source": [
+      "src/**/*.js"
+    ]
+  },
+  "xo": {
+    "envs": [
+      "node",
+      "browser"
+    ],
+    "space": true,
+    "rules": {
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "max-len": [
+        "error",
+        80
+      ]
+    }
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "commitizen": "^2.8.6",
+    "nyc": "^8.4.0",
+    "semantic-release": "^4.3.5",
+    "xo": "^0.17.0"
+  }
+}
