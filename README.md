@@ -35,6 +35,11 @@ import action from 'action-helper';
 
 export const login = action('LOGIN', 'username', 'password');
 
+// also, you can declare an action using the shorter method
+// this action creator will be able to receive any property
+// right into the action, without any restriction like the method above
+export const auth = action('AUTH');
+
 ```
 
 And now you can get a type of this action by simply doing:
@@ -48,6 +53,16 @@ And get an action object simply by doing:
 ```js
 console.log(login({username: 'root', password: 'qwerty'}));
 // logs {type: 'LOGIN', username: 'root', password: 'qwerty'}
+```
+
+When you explicitly declare the properties of an action, you won't get anything except them in the result. But, if you do not declare the properties, action creator function will be able to create an action with any properties that can be passed as an object.
+
+```js
+login({username: 'root', password: 'qwerty', rememberMe: true});
+// {type: 'LOGIN', username: 'root', password: 'qwerty'}
+
+auth({idToken: 'token'});
+// {type: 'AUTH', idToken: 'token'}
 ```
 
 Less code, less stress.

@@ -36,7 +36,8 @@ test('can instantiate with args', function (t) {
 test('can instantiate with args and values passed as object', function (t) {
   t.deepEqual(authAction({
     username: 'User!',
-    password: '1234567'
+    password: '1234567',
+    __thisPropertyWontBeInTheResult: 'yep'
   }), {
     type: authAction.type,
     username: 'User!',
@@ -59,3 +60,13 @@ test('pass an array', function (t) {
     length: 3
   });
 });
+
+test('can instantiate without any arg yet still be able to pass values',
+  function (t) {
+    t.deepEqual(action('NO_ARG')({a: 1, b: 2}), {
+      type: 'NO_ARG',
+      a: 1,
+      b: 2
+    });
+  }
+);

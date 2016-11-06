@@ -12,7 +12,7 @@ module.exports = function (type) {
     values = typeof values === 'object' ? values : {};
     var result = {type: type};
 
-    keys.forEach(function (key) {
+    (keys.length ? keys : Object.keys(values)).forEach(function (key) {
       result[key] = values[key];
     });
 
