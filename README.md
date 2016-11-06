@@ -13,12 +13,12 @@ npm install --save action-helper
 ## Why?
 
 To reduce code generation.
+I was dead tired to write all these actions each time.
 
-I was dead tired to write all this action each time:
 
 ```js
 
-const CONSTANT = 'CONSTANT'; // WHY?! constants string itself is a constant
+const CONSTANT = 'CONSTANT'; // WHY?! constant string itself is a constant
 
 const action = ({param}) => ({
   type: CONSTANT,
