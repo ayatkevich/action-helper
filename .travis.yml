@@ -14,6 +14,7 @@ before_script:
   - npm install
 script:
   - npm run lint
+  - npm run check-types
   - npm run coverage
 after_success:
   - npm run semantic-release

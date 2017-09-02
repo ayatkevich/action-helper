@@ -7,7 +7,8 @@
     "test": "ava",
     "coverage": "nyc npm run test && nyc check-coverage --lines 100 --functions 100 --branches 100",
     "commit": "npm run coverage && git cz",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "check-types": "tsc -p . --noEmit"
   },
   "repository": {
     "type": "git",
