@@ -3,6 +3,7 @@
     "declaration": true,
     "module": "commonjs",
     "outDir": "lib",
+    "lib": ["es5"],
     "target": "es5",
     "allowJs": true,
     "checkJs": true,
@@ -13,7 +14,7 @@
     "strictNullChecks": true
   },
   "files": [
-    "src/test.ts"
+    "test.ts"
   ],
   "exclude": [
     "node_modules"

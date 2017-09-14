@@ -8,8 +8,9 @@
     "coverage": "nyc npm run test && nyc check-coverage --lines 100 --functions 100 --branches 100",
     "commit": "npm run coverage && git cz",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "check-types": "tsc -p . --noEmit"
+    "check-types": "dtslint types"
   },
+  "types": "types",
   "repository": {
     "type": "git",
     "url": "https://github.com/ayatkevich/action-helper.git"
@@ -67,6 +68,7 @@
   "devDependencies": {
     "ava": "^0.16.0",
     "commitizen": "^2.8.6",
+    "dtslint": "^0.1.2",
     "nyc": "^8.4.0",
     "semantic-release": "^4.3.5",
     "xo": "^0.17.0"
