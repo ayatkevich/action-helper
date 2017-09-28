@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "declaration": true,
     "module": "commonjs",
     "outDir": "lib",
@@ -10,13 +11,12 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
+    "paths": {
+      "action-helper": [".."]
+    },
     "strictNullChecks": true
   },
-  "files": [
-    "test.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "files": ["test.ts"],
+  "exclude": ["node_modules"]
 }

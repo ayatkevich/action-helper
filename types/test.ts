@@ -1,49 +1,41 @@
-import actionHelper = require('..');
-
-type SimpleAction = {type: string};
-type Action<Payload> = SimpleAction & Payload;
-type PartialAction<Payload> = SimpleAction & Partial<Payload>;
+import actionHelper = require('action-helper');
+import { SimpleAction } from './types';
 
 interface LoginData {
   username: string;
   password: string;
 }
 
-type LoginAction = Action<LoginData>;
-type PartialLoginAction = PartialAction<LoginData>;
-
 /**
- * Test mandatory type argument
+ * Test if there is no type argument
  */
 // $ExpectError
 actionHelper();
 
 /**
- * Test type of type argument
+ * Test type of the type argument
  */
 // $ExpectError
 actionHelper(1);
 
 /**
- * Test types of keys arguments
+ * Test call with additional parameters
  */
 // $ExpectError
-actionHelper('LOGIN', 0, []);
+actionHelper('LOGIN', 'some argument');
 
 /**
- * Test login with incorrect keys
+ * Test login without strictly passed data interface
  */
-// $ExpectError
-actionHelper<LoginData>('LOGIN', 'errorUsername', 'errorPassword');
+(() => {
+  const login = actionHelper('LOGIN');
+
+  // $ExpectError
+  login({username: 'user', password: 'pwd'});
+})();
 
 /**
- * Test actionHelper without keys interface & with passed keys arguments
- */
-// $ExpectError
-actionHelper('LOGIN', 'username', 'password');
-
-/**
- * Test login with only type parameter
+ * Test login without strictly passed data interface
  */
 (() => {
   const login = actionHelper('LOGIN');
@@ -53,71 +45,31 @@ actionHelper('LOGIN', 'username', 'password');
 })();
 
 /**
- * Test parameterized login with strictly passed data interface
+ * Test login without object data
  */
 (() => {
   const login = actionHelper<LoginData>('LOGIN');
 
-  // $ExpectType LoginAction
-  login({username: 'user', password: 'pwd'})
+  // $ExpectError
+  login();
 })();
 
 /**
- * Test actionHelper with partial keys parameters & login with same parameters
+ * Test login with object data which does not match with interface
  */
 (() => {
-  const login = actionHelper<LoginData>('LOGIN', 'username');
+  const login = actionHelper<LoginData>('LOGIN');
 
-  // $ExpectType PartialLoginAction
+  // $ExpectError
   login({username: 'user'});
 })();
 
 /**
- * Test actionHelper with all partial keys parameters & login with same parameters
+ * Test login with strictly passed data interface
  */
 (() => {
-  const login = actionHelper<LoginData>('LOGIN', 'username', 'password');
+  const login = actionHelper<LoginData>('LOGIN');
 
-  // $ExpectType PartialLoginAction
+  // $ExpectType LoginData
   login({username: 'user', password: 'pwd'});
-})();
-
-/**
- * Test login with same keys
- */
-(() => {
-  const login = actionHelper<LoginData>('LOGIN', 'username', 'password');
-
-  // $ExpectError
-  login({errorUsername: 'user', errorPassword: 'pwd'});
-})();
-
-/**
- * Test actionHelper with partial keys parameters & login with same & another parameters
- */
-(() => {
-  const login = actionHelper<LoginData>('LOGIN', 'username');
-
-  // $ExpectType PartialLoginAction
-  login({username: 'user', password: 'pwd'});
-})();
-
-/**
- * Test actionHelper with partial keys parameters & login with same parameters & parameters which not matched with interface
- */
-(() => {
-  const login = actionHelper<LoginData>('LOGIN', 'username');
-
-  // $ExpectType PartialLoginAction
-  login({username: 'user', foo: 'bar'});
-})();
-
-/**
- * Test actionHelper with partial keys parameters & login with another parameters
- */
-(() => {
-  const login = actionHelper<LoginData>('LOGIN', 'username');
-
-  // $ExpectError
-  login({password: 'pwd'});
 })();
