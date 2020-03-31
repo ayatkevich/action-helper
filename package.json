@@ -64,7 +64,7 @@
     }
   },
   "devDependencies": {
-    "ava": "^0.16.0",
+    "ava": "^3.5.2",
     "commitizen": "^2.8.6",
     "nyc": "^8.4.0",
     "semantic-release": "^4.3.5",
