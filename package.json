@@ -67,7 +67,7 @@
     "ava": "^0.16.0",
     "commitizen": "^2.8.6",
     "nyc": "^8.4.0",
-    "semantic-release": "^4.3.5",
+    "semantic-release": "^17.0.7",
     "xo": "^0.17.0"
   }
 }
